@@ -6,6 +6,13 @@
 extern Ember::App* Ember::createApp();
 
 int main(int argc, char** argv) {
+
+	// logger
+	Ember::Log::Init();
+	EMBER_CORE_WARN("Initialized Ember logger!");
+	EMBER_Client_INFO("Initialized Client logger!");
+
+	// loop
 	auto app = Ember::createApp();
 	app->Run();
 	delete app;

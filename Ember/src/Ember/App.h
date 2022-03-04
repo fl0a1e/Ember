@@ -12,7 +12,7 @@ namespace Ember {
 		void Run();
 	};
 
-	// 
+	// to be defined by client
 	App* createApp();
 
 }

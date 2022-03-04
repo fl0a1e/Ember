@@ -1,6 +1,10 @@
 # Dir
 .vs/
 bin/
+bin-int/
 
 # Files
+Ember.sln
 *.user
+*.vcxproj
+*.vcxproj.filters

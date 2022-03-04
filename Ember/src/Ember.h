@@ -4,8 +4,10 @@
 #include "Ember/App.h"
 
 
-// Entry Point
-#include "Ember/EntryPoint.h"
-
-
 // log moudle
+#include "Ember/Log.h"
+
+
+//-----Entry Point-------------
+#include "Ember/EntryPoint.h"
+//-----------------------------
