@@ -10,19 +10,33 @@ workspace "Ember"
         "Dist"
     }
 
-outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+-- define some parameters
+outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+IncludeDir = {}
+IncludeDir["GLFW"] = "Ember/third-party/GLFW/include"
+
 
 
 --[[
--------------------------------Ember---------------------------
+------------------------- GLFW project -------------------------
+--]]
+-- runs "Ember/third-party/GLFW/premake5.lua"
+include "Ember/third-party/GLFW"
+
+
+--[[
+------------------------- Ember project ------------------------
 --]]
 project "Ember"
     location "Ember"
     kind "SharedLib"    -- dll and ConsoleApp .etc
     language "C++"
 
-    targetdir ( "bin/" .. outputDir .. "/%{prj.name}" )   -- 编译结果目录
-    objdir ( "bin-int/" .. outputDir .. "/%{prj.name}" )  -- 中间文件目录
+    targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )   -- 编译结果目录
+    objdir ( "bin-int/" .. outputdir .. "/%{prj.name}" )  -- 中间文件目录
+
+    pchheader "pch.h"
+    pchsource "Ember/src/pch.cpp"
 
     -- 源文件
     files {
@@ -32,8 +46,17 @@ project "Ember"
 
     -- 第三方库文件包含
     includedirs {
-        "%{prj.name}/third-party/spdlog/include"
+        "%{prj.name}/third-party/spdlog/include",
+        "%{prj.name}/src",
+        "%{IncludeDir.GLFW}"
     }
+
+    -- 链接
+    links {
+        "GLFW",
+        "opengl32.lib"
+    }
+
 
     -- 模式过滤
     ----------------------system:windows----------------------------
@@ -49,7 +72,7 @@ project "Ember"
         }
 
         -- 编译后命令 将dll拷贝到启动项目目录
-        postbuildcommands { "{copy} %{cfg.buildtarget.relpath} ../bin/" .. outputDir .. "/sandbox" }
+        postbuildcommands { "{copy} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/sandbox" }
 
     
     ------------------configurations:Debug--------------------------
@@ -73,15 +96,15 @@ project "Ember"
 
 
 --[[
--------------------------------sandbox---------------------------
+------------------------- sandbox project------------------------
 --]]
 project "sandbox"
     location "sandbox"
     kind "ConsoleApp"
     language "C++"
 
-    targetdir ( "bin/" .. outputDir .. "/%{prj.name}" )   -- 编译结果目录
-    objdir ( "bin-int/" .. outputDir .. "/%{prj.name}" )  -- 中间文件目录
+    targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )   -- 编译结果目录
+    objdir ( "bin-int/" .. outputdir .. "/%{prj.name}" )  -- 中间文件目录
 
     -- 源文件
     files {

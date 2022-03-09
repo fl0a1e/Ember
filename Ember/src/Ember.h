@@ -4,7 +4,7 @@
 #include "Ember/App.h"
 
 
-// log moudle
+// ----log module----
 #include "Ember/Log.h"
 
 

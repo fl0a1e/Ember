@@ -1,3 +1,6 @@
 [submodule ".\\Ember\\third-party\\spdlog"]
 	path = .\\Ember\\third-party\\spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "Ember/third-party/GLFW"]
+	path = Ember/third-party/GLFW
+	url = https://github.com/fl0a1e/glfw.git
