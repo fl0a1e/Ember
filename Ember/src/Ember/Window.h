@@ -23,7 +23,7 @@ namespace Ember {
 	// Interface (to be fulfill for each platform)
 	class EMBER_API Window {
 	public:
-		using EventCallbackFn = std::function<void(Event&)>;
+		using EventCallbackFn = std::function<void(Event&)>;	// 定义回调函数类
 
 		virtual ~Window() {}
 
@@ -33,7 +33,7 @@ namespace Ember {
 		virtual uint32_t GetHeight() const = 0;
 
 		// Window attributes
-		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
+		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;	// 接受一个回调函数类的指针（引用）
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 

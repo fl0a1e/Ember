@@ -77,7 +77,7 @@ namespace Ember {
 		{
 			if (event.getEventType() == T::getStaticType())
 			{
-				event.isHandled = func(*(*T) & (event));
+				event.isHandled = func(*(T*) & (event));
 				return true;
 			}
 			return false;

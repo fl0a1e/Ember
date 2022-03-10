@@ -3,6 +3,7 @@
 #include "Core.h"
 #include "Events/Events.h"
 #include "Window.h"
+#include "Ember/Events/AppEvents.h"
 
 namespace Ember {
 
@@ -13,7 +14,13 @@ namespace Ember {
 
 		void Run();
 
+		void onEvent(Event& e);
+
+		
+
 	private:
+		bool onWindowClose(WindowClose& e);
+
 		std::unique_ptr<Window> m_Window;
 		bool isRunning = true;
 	};

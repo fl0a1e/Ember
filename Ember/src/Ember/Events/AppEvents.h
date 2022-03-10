@@ -29,7 +29,7 @@ namespace Ember {
 
 	class EMBER_API WindowClose : public Event {
 	public:
-		WindowClose() = default;	// the compiler will provide a default constructor for this class
+		WindowClose() {}	
 
 		EVENT_CLASS_TYPE(WindowClose)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
@@ -39,7 +39,7 @@ namespace Ember {
 
 	class EMBER_API AppTick : public Event {
 	public:
-		AppTick() = default;
+		AppTick() = default;	// the compiler will provide a default constructor for this class
 
 		EVENT_CLASS_TYPE(AppTick)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)

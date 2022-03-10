@@ -32,8 +32,8 @@ namespace Ember {
 
 		// Window attributes
 		void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
-		void SetVSync(bool enabled) override;
-		bool IsVSync() const override;
+		void SetVSync(bool enabled) override; // 垂直同步
+		bool IsVSync() const override;	// 是否开启垂直同步
 
 	private:
 		virtual void Init(const WindowProps& props);
