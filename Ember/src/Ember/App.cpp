@@ -2,6 +2,8 @@
 #include "App.h"
 #include "Events/AppEvents.h"
 
+#include "glad/glad.h"
+
 namespace Ember {
 
 	
@@ -15,7 +17,7 @@ namespace Ember {
 		// onEvent() 通过std::bind 绑定到占位符的参数，即Event& e上
 		// 从而根据不同事件调用 事件调度器 EventDispatcher 分配具体函数
 		// 先聚合再分配，好像多路复用，多路分解
-		m_Window->SetEventCallback(BIND_EVENT_FN(App::onEvent));	
+		m_Window->SetEventCallback(BIND_EVENT_FN(App::onEvent));
 	}
 
 	App::~App() {

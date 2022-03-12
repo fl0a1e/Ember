@@ -4,3 +4,9 @@
 [submodule "Ember/third-party/GLFW"]
 	path = Ember/third-party/GLFW
 	url = https://github.com/fl0a1e/glfw.git
+[submodule "Ember/third-party/imGUI"]
+	path = Ember/third-party/imGUI
+	url = https://github.com/fl0a1e/imgui.git
+[submodule "Ember/third-party/glm"]
+	path = Ember/third-party/glm
+	url = https://github.com/g-truc/glm.git

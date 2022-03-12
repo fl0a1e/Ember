@@ -12,8 +12,12 @@ workspace "Ember"
 
 -- define some parameters
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
 IncludeDir = {}
 IncludeDir["GLFW"] = "Ember/third-party/GLFW/include"
+IncludeDir["Glad"] = "Ember/third-party/Glad/include"
+IncludeDir["imGUI"] = "Ember/third-party/imGUI/include"
+IncludeDir["glm"] = "Ember/third-party/glm/include"
 
 
 
@@ -22,6 +26,8 @@ IncludeDir["GLFW"] = "Ember/third-party/GLFW/include"
 --]]
 -- runs "Ember/third-party/GLFW/premake5.lua"
 include "Ember/third-party/GLFW"
+include "Ember/third-party/Glad"
+include "Ember/third-party/imGUI"
 
 
 --[[
@@ -41,19 +47,27 @@ project "Ember"
     -- 源文件
     files {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/third-party/glm/glm/**.hpp",
+        "%{prj.name}/third-party/glm/glm/**.inl",
+        "%{prj.name}/third-party/glm/glm/**.h"
     }
 
     -- 第三方库文件包含
     includedirs {
         "%{prj.name}/third-party/spdlog/include",
         "%{prj.name}/src",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.imGUI}",
+        "%{IncludeDir.glm}"
     }
 
     -- 链接
     links {
         "GLFW",
+        "Glad",
+        "imGUI",
         "opengl32.lib"
     }
 
@@ -68,7 +82,8 @@ project "Ember"
         -- 预定义
         defines {
             "EMBER_PLATFORM_WINDOWS",
-            "EMBER_BUILD_DLL"
+            "EMBER_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         }
 
         -- 编译后命令 将dll拷贝到启动项目目录
@@ -115,7 +130,8 @@ project "sandbox"
     -- 包含文件
     includedirs {
         "Ember/third-party/spdlog/include",
-        "Ember/src"
+        "Ember/src",
+        "%{IncludeDir.glm}"
     }
 
     -- 指定要链接的库和项目
