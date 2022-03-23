@@ -7,9 +7,6 @@
 #include "glad/glad.h"
 
 namespace Ember {
-
-	
-#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 	
 	App* App::s_Instance = nullptr;
 
@@ -61,12 +58,17 @@ namespace Ember {
 
 		// main loop
 		while (isRunning) {
+			
+			// 刷新窗口，防止内部窗口拖尾
+			glClearColor(0.1, 0.1, 0.1, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
 
 			// 更新每层 layer
 			for (Layer* layer : layerStack) {
 				layer->onUpdate();
 			}
 
+			
 			m_Window->OnUpdate();
 
 

@@ -44,8 +44,43 @@ namespace Ember {
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	};
 
+	class EMBER_API MouseButton : public Event {
+	public:
+		inline int getMouseButton() const { return mouseCode; }
 
+		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+	protected:
+		MouseButton(int button) 
+			: mouseCode(button) {}
 
+		int mouseCode;
+	};
 
+	class EMBER_API MouseButtonPressed : public MouseButton {
+	public:
+		MouseButtonPressed(int button)
+			: MouseButton(button) {}
 
+		std::string toString() const override {
+			std::stringstream ss;
+			ss << "mouseButtonPressed:" << mouseCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(MouseButtonPressed)
+	};
+
+	class EMBER_API MouseButtonReleased : public MouseButton {
+	public:
+		MouseButtonReleased(int button)
+			: MouseButton(button) {}
+
+		std::string toString() const override {
+			std::stringstream ss;
+			ss << "mouseButtonReleased:" << mouseCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(MouseButtonReleased)
+	};
 }

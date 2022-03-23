@@ -99,7 +99,7 @@ namespace Ember {
 			}
 		});
 
-		/*
+		
 		// Êó±ê°´¼ü
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -107,18 +107,17 @@ namespace Ember {
 			switch (action) {
 
 				case GLFW_PRESS: {
-					MouseBu event(key, 0);
+					MouseButtonPressed event(button);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE: {
-					KeyReleased event(key);
+					MouseButtonReleased event(button);
 					data.EventCallback(event);
 					break;
 				}
 			}
 		});
-		*/
 
 
 		// ¹öÂÖ
@@ -145,6 +144,8 @@ namespace Ember {
 
 
 	void WindowsWindow::OnUpdate() {
+		
+
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
