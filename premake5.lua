@@ -16,7 +16,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Ember/third-party/GLFW/include"
 IncludeDir["Glad"] = "Ember/third-party/Glad/include"
-IncludeDir["imGUI"] = "Ember/third-party/imGUI/include"
+IncludeDir["imGUI"] = "Ember/third-party/imGUI"
 IncludeDir["glm"] = "Ember/third-party/glm/include"
 
 

@@ -10,8 +10,13 @@ namespace Ember {
 
 	
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
+	
+	App* App::s_Instance = nullptr;
 
 	App::App() {
+		EMBER_CORE_ASSERT(!s_Instance, "App already exists!");
+		s_Instance = this;
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
 
 		// 设置窗口回调函数，glfwSet...Callback 事件发生则调用 data.
@@ -27,10 +32,12 @@ namespace Ember {
 
 	void App::pushLayer(Layer* layer) {
 		layerStack.pushLayer(layer);
+		layer->onAttach();
 	}
 
 	void App::pushOverlay(Layer* overlay) {
 		layerStack.pushOverlay(overlay);
+		overlay->onAttach();
 	}
 
 	void App::onEvent(Event& e) {

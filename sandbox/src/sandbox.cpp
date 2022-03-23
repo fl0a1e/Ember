@@ -20,6 +20,7 @@ class SandBox : public Ember::App {
 public:
 	SandBox() {
 		pushLayer(new boxLayer());
+		pushOverlay(new Ember::ImGUILayer());
 	}
 
 	~SandBox() {

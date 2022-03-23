@@ -11,6 +11,7 @@
 #include "Ember/App.h"
 
 #include "Ember/Layer.h"
+#include "Ember/ImGUI/ImGUILayer.h"
 
 // ----log module----
 #include "Ember/Log.h"

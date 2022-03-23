@@ -6,5 +6,11 @@
 
 **in development and only for study**
 
+### third-party
 
-
+- spdlog
+- ImGUI
+- GLFW
+- Glad
+- glm
+- premake5

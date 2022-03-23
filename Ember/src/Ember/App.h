@@ -21,6 +21,9 @@ namespace Ember {
 		void pushLayer(Layer* layer);
 		void pushOverlay(Layer* overlay);
 
+		inline static App& get() { return *s_Instance; }
+
+		inline Window& getWindow() { return *m_Window; }
 	private:
 		bool onWindowClose(WindowClose& e);
 
@@ -28,6 +31,8 @@ namespace Ember {
 		bool isRunning = true;
 
 		LayerStack layerStack;
+	private:
+		static App* s_Instance;
 	};
 
 	// to be defined by client
