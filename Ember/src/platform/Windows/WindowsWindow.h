@@ -23,6 +23,7 @@ namespace Ember {
 
 	public:
 		WindowsWindow(const WindowProps& props);
+
 		virtual ~WindowsWindow();
 
 		void OnUpdate() override;

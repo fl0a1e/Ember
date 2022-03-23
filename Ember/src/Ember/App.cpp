@@ -1,6 +1,8 @@
 #include "pch.h"
-#include "App.h"
+#include "Ember/App.h"
 #include "Events/AppEvents.h"
+#include "Ember/LayerStack.h"
+
 
 #include "glad/glad.h"
 
@@ -23,6 +25,14 @@ namespace Ember {
 	App::~App() {
 	}
 
+	void App::pushLayer(Layer* layer) {
+		layerStack.pushLayer(layer);
+	}
+
+	void App::pushOverlay(Layer* overlay) {
+		layerStack.pushOverlay(overlay);
+	}
+
 	void App::onEvent(Event& e) {
 		// 事件调度器
 		EventDispatcher dispatcher(e);
@@ -30,12 +40,25 @@ namespace Ember {
 
 		// 输出事件消息
 		EMBER_CORE_TRACE("{0}", e);
+
+		// 自上而下传递事件消息
+		for (auto it = layerStack.end(); it != layerStack.begin(); ) {
+			(*--it)->onEvent(e);
+			if (e.isHandled) {
+				break;
+			}
+		}
 	}
 
 	void App::Run() {
 
 		// main loop
 		while (isRunning) {
+
+			// 更新每层 layer
+			for (Layer* layer : layerStack) {
+				layer->onUpdate();
+			}
 
 			m_Window->OnUpdate();
 

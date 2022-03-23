@@ -93,12 +93,14 @@ project "Ember"
     ------------------configurations:Debug--------------------------
     filter "configurations:Debug"
         defines "EMBER_DEBUG"
+        buildoptions "/MDd"
         symbols "On"    -- 是否生成调试符号表
     
 
     ------------------configurations:Release------------------------
     filter "configurations:Release"
         defines "EMBER_RELAESE"
+        buildoptions "/MD"
         optimize "On"   -- 指定构建目标配置时使用的优​​化级别和类型
 
 
@@ -106,6 +108,7 @@ project "Ember"
     ------------------configurations:Dist---------------------------
     filter "configurations:Dist" 
         defines "EMBER_DIST"
+        buildoptions "/MD"
         optimize "On"
     
 
@@ -153,12 +156,14 @@ project "sandbox"
     ------------------configurations:Debug--------------------------
     filter "configurations:Debug"
         defines "EMBER_DEBUG"
+        buildoptions "/MDd"
         symbols "On"    -- 是否生成调试符号表
     
 
     ------------------configurations:Release------------------------
     filter "configurations:Release"
         defines "EMBER_RELAESE"
+        buildoptions "/MD"
         optimize "On"   -- 指定构建目标配置时使用的优​​化级别和类型
 
 
@@ -166,4 +171,5 @@ project "sandbox"
     ------------------configurations:Dist---------------------------
     filter "configurations:Dist"
         defines "EMBER_DIST"
+        buildoptions "/MD"
         optimize "On"
