@@ -25,6 +25,9 @@ namespace Ember {
 		// 处理指定 layer 的事件
 		virtual void onEvent(Event& event) {}	
 
+		// 
+		virtual void onImGuiRender() {}
+
 
 		// 获取指定 layer 名称
 		inline const std::string& getName() const { return layerDebugName; }	

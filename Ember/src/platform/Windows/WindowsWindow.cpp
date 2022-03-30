@@ -135,6 +135,14 @@ namespace Ember {
 			MouseMoved event((float)xpos, (float)ypos);
 			data.EventCallback(event);
 		});
+
+		// ×Ö·û»Øµ÷
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int codepoint) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			KeyTyped event(codepoint);
+			data.EventCallback(event);
+		});
 	}
 
 

@@ -37,6 +37,7 @@ project "Ember"
     location "Ember"
     kind "SharedLib"    -- dll and ConsoleApp .etc
     language "C++"
+    staticruntime "off"
 
     targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )   -- 编译结果目录
     objdir ( "bin-int/" .. outputdir .. "/%{prj.name}" )  -- 中间文件目录
@@ -77,7 +78,6 @@ project "Ember"
     filter "system:windows" 
         cppdialect "C++17"      -- C++ version
         systemversion "latest" -- SDK version
-        staticruntime "on"      -- Sets <RuntimeLibrary> to "MultiThreaded"	
         
         -- 预定义
         defines {
@@ -87,20 +87,20 @@ project "Ember"
         }
 
         -- 编译后命令 将dll拷贝到启动项目目录
-        postbuildcommands { "{copy} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/sandbox" }
+        postbuildcommands { "{copy} %{cfg.buildtarget.relpath}  ../bin/" .. outputdir .. "/sandbox/" }
 
     
     ------------------configurations:Debug--------------------------
     filter "configurations:Debug"
         defines "EMBER_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"    -- 是否生成调试符号表
     
 
     ------------------configurations:Release------------------------
     filter "configurations:Release"
         defines "EMBER_RELAESE"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"   -- 指定构建目标配置时使用的优​​化级别和类型
 
 
@@ -108,7 +108,7 @@ project "Ember"
     ------------------configurations:Dist---------------------------
     filter "configurations:Dist" 
         defines "EMBER_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
     
 
@@ -120,6 +120,7 @@ project "sandbox"
     location "sandbox"
     kind "ConsoleApp"
     language "C++"
+    staticruntime "off"
 
     targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )   -- 编译结果目录
     objdir ( "bin-int/" .. outputdir .. "/%{prj.name}" )  -- 中间文件目录
@@ -147,7 +148,6 @@ project "sandbox"
     filter "system:windows"
         cppdialect "C++17"      -- C++ version
         systemversion "latest"  -- SDK version
-        staticruntime "on"      -- Sets <RuntimeLibrary> to "MultiThreaded"	
         
         -- 预定义
         defines { "EMBER_PLATFORM_WINDOWS" }
@@ -156,14 +156,14 @@ project "sandbox"
     ------------------configurations:Debug--------------------------
     filter "configurations:Debug"
         defines "EMBER_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"    -- 是否生成调试符号表
     
 
     ------------------configurations:Release------------------------
     filter "configurations:Release"
         defines "EMBER_RELAESE"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"   -- 指定构建目标配置时使用的优​​化级别和类型
 
 
@@ -171,5 +171,5 @@ project "sandbox"
     ------------------configurations:Dist---------------------------
     filter "configurations:Dist"
         defines "EMBER_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"

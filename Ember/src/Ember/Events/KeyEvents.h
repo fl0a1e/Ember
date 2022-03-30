@@ -53,4 +53,18 @@ namespace Ember {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
+	class EMBER_API KeyTyped : public KeyEvent {
+	public:
+		KeyTyped(int _keyCode)
+			: KeyEvent(_keyCode) {}
+
+		std::string toString() const override {
+			std::stringstream ss;
+			ss << "KeyTyped:" << keyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
+	};
+
 }

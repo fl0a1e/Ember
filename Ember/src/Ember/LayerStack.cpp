@@ -5,7 +5,7 @@
 namespace Ember {
 
 	LayerStack::LayerStack() {
-		layersInsert = layersVec.begin();
+		
 	}
 
 	LayerStack::~LayerStack() {
@@ -16,7 +16,8 @@ namespace Ember {
 
 	
 	void LayerStack::pushLayer(Layer* layer) {
-		layersInsert = layersVec.emplace(layersInsert, layer);
+		layersVec.emplace(layersVec.begin() + layersInsertIndex, layer);
+		layersInsertIndex++;
 	}
 
 	
@@ -28,7 +29,7 @@ namespace Ember {
 		auto it = std::find(layersVec.begin(), layersVec.end(), layer);
 		if ( it!=layersVec.end() ) {
 			layersVec.erase(it);
-			layersInsert--;
+			layersInsertIndex--;
 		}
 	}
 

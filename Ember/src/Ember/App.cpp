@@ -15,6 +15,7 @@ namespace Ember {
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
+		
 
 		// 设置窗口回调函数，glfwSet...Callback 事件发生则调用 data.
 		// 由 SetEventCallback 设置为 onEvent()
@@ -22,6 +23,9 @@ namespace Ember {
 		// 从而根据不同事件调用 事件调度器 EventDispatcher 分配具体函数
 		// 先聚合再分配，好像多路复用，多路分解
 		m_Window->SetEventCallback(BIND_EVENT_FN(App::onEvent));
+
+		m_imGuiLayer = new ImGUILayer();
+		pushOverlay(m_imGuiLayer);
 	}
 
 	App::~App() {
@@ -68,6 +72,11 @@ namespace Ember {
 				layer->onUpdate();
 			}
 
+			m_imGuiLayer->Begin();
+			for (Layer* layer : layerStack) {
+				layer->onImGuiRender();
+			}
+			m_imGuiLayer->End();
 			
 			m_Window->OnUpdate();
 

@@ -12,7 +12,7 @@ namespace Ember {
 	class EMBER_API LayerStack {
 	private:
 		std::vector<Layer*> layersVec;
-		std::vector<Layer*>::iterator layersInsert;
+		unsigned int layersInsertIndex = 0;
 	public:
 		LayerStack();
 		~LayerStack();

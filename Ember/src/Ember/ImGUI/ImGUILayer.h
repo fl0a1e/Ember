@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include "Ember/Layer.h"
 #include "Ember/Events/AppEvents.h"
 #include "Ember/Events/KeyEvents.h"
@@ -12,20 +13,12 @@ namespace Ember {
 		ImGUILayer();
 		~ImGUILayer();
 
-		void onAttach();
-		void onDetach();
-		void onUpdate();
-		void onEvent(Event& event);
-	private:
-		bool onMouseButtonPressed(MouseButtonPressed& e);
-		bool onMouseButtonReleased(MouseButtonReleased& e);
-		bool onMouseScrolled(MouseScrolled& e);
-		bool onMouseMoved(MouseMoved& e);
-		bool onKeyPressed(KeyPressed& e);
-		bool onKeyReleased(KeyReleased& e);
-		//bool onKeyTyped(KeyTyped& e);
-		bool onWindowResize(WindowResize& e);
+		virtual void onAttach() override;
+		virtual void onDetach() override;
+		virtual void onImGuiRender() override;
 
+		void Begin();
+		void End();
 	private:
 		float imGUILayer_time = 0.0f;
 	};

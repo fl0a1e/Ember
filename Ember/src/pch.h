@@ -15,6 +15,7 @@
 
 
 #include "Ember/Log.h"
+#include "Ember/Core.h"
 
 
 #ifdef EMBER_PLATFORM_WINDOWS
