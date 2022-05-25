@@ -145,22 +145,21 @@ namespace Ember {
 		});
 	}
 
-
 	void WindowsWindow::Shutdown() {
 		glfwDestroyWindow(m_Window);
 	}
 
 
+	
 	void WindowsWindow::OnUpdate() {
-		
-
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
 
+	
 	void WindowsWindow::SetVSync(bool enabled) {
 		if (enabled) {
-			glfwSwapInterval(1);	// 也叫垂直同步，设置当前 OpenGL context的交换间隔（从调用glfwSwapBuffers到交换缓冲区并返回之前等待的屏幕更新次数）
+			glfwSwapInterval(1);	// 也叫垂直同步
 		}
 		else {
 			glfwSwapInterval(0);

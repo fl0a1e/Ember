@@ -25,7 +25,8 @@ namespace Ember {
 		WindowsWindow(const WindowProps& props);
 
 		virtual ~WindowsWindow();
-
+		
+		
 		void OnUpdate() override;
 
 		inline unsigned int GetWidth() const override { return m_Data.Width; }
@@ -33,7 +34,12 @@ namespace Ember {
 
 		// Window attributes
 		void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
-		void SetVSync(bool enabled) override; // 垂直同步
+
+		/// <summary>
+		/// 垂直同步
+		/// 设置当前 OpenGL context的交换间隔（从调用glfwSwapBuffers到交换缓冲区并返回之前等待的屏幕更新次数）
+		/// </summary>
+		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;	// 是否开启垂直同步
 
 		inline void* GetNativeWindow() const { return m_Window; };

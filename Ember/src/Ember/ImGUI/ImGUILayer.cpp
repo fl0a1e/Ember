@@ -86,11 +86,40 @@ namespace Ember {
 
 	}
 
+	void initRootWindow() {
+
+		//--------------------------------------------------
+		static bool showDemoWindow = false;
+		//static bool showPanel = false;
+		if (showDemoWindow) ImGui::ShowDemoWindow(&showDemoWindow);
+		//if (showPanel) ImGui::ShowPanel(&showPanel);
+
+		// MainMenuBar
+		if (ImGui::BeginMainMenuBar()) {
+			if (ImGui::BeginMenu("File")) {
+				// 
+				ImGui::EndMenu();
+			}
+			if (ImGui::BeginMenu("Edit")) {
+
+				ImGui::EndMenu();
+			}
+			if (ImGui::BeginMenu("View")) {
+				ImGui::MenuItem("demo window", NULL, &showDemoWindow);
+				//ImGui::MenuItem("panel", NULL, &showPanel);
+				ImGui::EndMenu();
+			}
+			if (ImGui::BeginMenu("Help")) {
+
+				ImGui::EndMenu();
+			}
+			ImGui::EndMainMenuBar();
+		}
+		
+	}
+
 	void ImGUILayer::onImGuiRender() {
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
-
-
+		initRootWindow();
 	}
 }
 

@@ -13,7 +13,7 @@ namespace Ember {
 		unsigned int Height;
 		unsigned int Width;
 
-		WindowProps(const std::string& _title = "Ember Renderer",
+		WindowProps(const std::string& _title = "ImGui:Sandbox",
 					unsigned int _height = 720,
 					unsigned int _width = 1280)
 			: Title(_title), Height(_height), Width(_width)
@@ -27,6 +27,9 @@ namespace Ember {
 
 		virtual ~Window() {}
 
+		/// <summary>
+		/// 处理事件;交换缓冲区;
+		/// </summary>
 		virtual void OnUpdate() = 0;
 
 		virtual uint32_t GetWidth() const = 0;

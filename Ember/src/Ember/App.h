@@ -7,6 +7,8 @@
 #include "Ember/Events/AppEvents.h"
 
 #include "Ember/ImGUI/ImGUILayer.h"
+#include "Ember/Renderer/Shader.h"
+#include "Ember/Renderer/Renderer.h"
 
 namespace Ember {
 
@@ -35,6 +37,12 @@ namespace Ember {
 		LayerStack layerStack;
 	private:
 		static App* s_Instance;
+
+	// ---------------renderer-------------------
+	private:
+		unsigned int vertexBuffer, vertexArray, indexBuffer;
+		Renderer* renderer;
+		std::unique_ptr<Shader> sha;
 	};
 
 	// to be defined by client
